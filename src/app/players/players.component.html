@@ -1,0 +1,14 @@
+<ul class="tw-players-list">
+  <li *ngFor="let player of players" class="tw-player-info">
+    {{player.name}}
+    <ul>
+      <li *ngFor="let limb of player.limbs">
+        {{limb.title}}
+        <span *ngIf="limb.cell">
+          {{limb.cell.color}} {{limb.cell.number}}
+        </span>
+        <span *ngIf="!limb.cell">is free</span>
+      </li>
+    </ul>
+  </li>
+</ul>

@@ -1,0 +1,13 @@
+<div class="tw-controls">
+  <button (click)="gameService.removePlayer()">
+    <fa-icon [icon]="faTrashAlt"></fa-icon>
+    Remove Current Player
+  </button>
+  <button (click)="gameService.step()">
+    <fa-icon [icon]="faPlayCircle"></fa-icon>
+    Next Move
+  </button>
+  <span *ngIf="gameService.currentPlayer">
+    Current Player: {{gameService.currentPlayer?.name}}
+  </span>
+</div>

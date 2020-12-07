@@ -1,0 +1,7 @@
+<ul class="tw-field">
+  <li *ngFor="let cell of gameService.field.cells" class="tw-field-item-{{cell.number}} tw-field-item-{{cell.color}}" [ngStyle]="{ backgroundColor: cell.color}">
+    <span *ngIf="cell.limb">
+      {{cell.limb.player.name}}
+    </span>
+  </li>
+</ul>

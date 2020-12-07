@@ -1,0 +1,17 @@
+<div class="tw-wrapper tw-wrapper_menu">
+  <fa-icon class="tw-menu-icon" [icon]="faBars" [style]="{ color: '#f90'}" (click)="toggleMenu()"></fa-icon>
+  <div class="tw-menu" [ngClass]="{'tw-menu--active': active}">
+    <ul>
+      <li class="tw-menu_item" *ngFor="let item of items" [ngClass]="{ 'tw-menu_item--active' : item.active}">
+        <span (click)="item.click()">{{item.title}}</span>
+      </li>
+    </ul>
+    <div class="tw-menu-names">
+      <input type="text" [value]="playerNames[0]" />
+      <input type="text" [value]="playerNames[1]" />
+      <input type="text" [value]="playerNames[2]" />
+      <input type="text" [value]="playerNames[3]" />
+    </div>
+  </div>
+</div>
+
