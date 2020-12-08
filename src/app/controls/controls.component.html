@@ -1,13 +1,18 @@
 <div class="tw-controls">
-  <button (click)="gameService.removePlayer()">
+  <button (click)="gameService.removePlayer()" title="Remove Player">
     <fa-icon [icon]="faTrashAlt"></fa-icon>
-    Remove Current Player
   </button>
-  <button (click)="gameService.step()">
+  <button (click)="gameService.undo()" title="Previous Move">
+    <fa-icon [icon]="faArrowAltCircleLeft"></fa-icon>
+  </button>
+  <button (click)="gameService.step()" title="Next Move">
     <fa-icon [icon]="faPlayCircle"></fa-icon>
-    Next Move
   </button>
-  <span *ngIf="gameService.currentPlayer">
-    Current Player: {{gameService.currentPlayer?.name}}
-  </span>
+  <button (click)="historyShown = !historyShown" title="Show History">
+    <fa-icon [icon]="faHistory"></fa-icon>
+  </button>
+  <div class="tw-controls_current-player">
+    <fa-icon [icon]="faAddressCard"></fa-icon>
+    {{gameService.currentPlayer?.name}}
+  </div>
 </div>

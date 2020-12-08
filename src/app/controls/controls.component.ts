@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { faPlayCircle, faPauseCircle, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
+import { faPlayCircle, faPauseCircle, faTrashAlt, faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons';
+import { faStepBackward, faFastBackward, faPlay, faHistory, faAddressCard } from '@fortawesome/free-solid-svg-icons'
 import {GameService} from "../game.service";
 
 @Component({
@@ -9,7 +10,11 @@ import {GameService} from "../game.service";
 })
 export class ControlsComponent implements OnInit {
   faTrashAlt = faTrashAlt
-  faPlayCircle = faPlayCircle
+  faPlayCircle = faPlay
+  faArrowAltCircleLeft = faStepBackward
+  faHistory = faHistory
+  faAddressCard = faAddressCard
+  historyShown: boolean;
   constructor(public gameService: GameService) { }
 
   ngOnInit(): void {
