@@ -45,8 +45,12 @@ export class GameService {
     this.nextPlayerIndex();
     this.currentPlayer = this.players[this._currentPlayerIndex];
   }
+  undo() {
+
+  }
 
   private nextPlayerIndex() {
     this._currentPlayerIndex = this._currentPlayerIndex >= this.players.length - 1 ? 0 : this._currentPlayerIndex + 1;
   }
+
 }
