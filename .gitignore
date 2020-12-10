@@ -9,6 +9,7 @@
 
 # dependencies
 /node_modules
+package-lock.json
 
 # profiling files
 chrome-profiler-events*.json
@@ -37,6 +38,7 @@ speed-measure-plugin*.json
 /coverage
 /libpeerconnection.log
 npm-debug.log
+debug.log
 yarn-error.log
 testem.log
 /typings

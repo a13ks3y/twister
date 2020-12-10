@@ -110,5 +110,26 @@ describe('GameService', () => {
     service.removePlayer();
     expect(service.players.length).toEqual(3);
     expect(service.players.find(p => p.name == 'Bob')).toBeUndefined();
-  })
+  });
+
+  it('should restore previous state if undo method was called', () => {
+    service.step();
+    service.step();
+    service.undo();
+    expect(service.currentPlayer.name).toEqual('Alice');
+    // todo: test other fields
+  });
+
+  it('should restore second state after step * 5 and undo * 3 calls sequence', () => {
+    service.step(); // Alice
+    service.step(); // Bob
+    service.step(); // Charly
+    service.step(); // Dilan
+    service.undo(); // [UNDO] Charly
+    service.undo(); // [UNDO] Bob
+    expect(service.currentPlayer.name).toEqual('Bob');
+    // todo: test other fields
+  });
+
+  // todo: test no same limbs and only free cells to choose (how?) !!!
 });

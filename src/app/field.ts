@@ -15,7 +15,7 @@ export class FieldCell {
   }
 }
 export class Field {
-    public readonly cells: FieldCell[] = [];
+    public cells: FieldCell[] = [];
     private static WIDTH: number = 6;
     private static HEIGHT: number = 4;
 
