@@ -13,13 +13,15 @@ class GameState {
   providedIn: 'root'
 })
 export class GameService {
+  get currentPlayer(): Player {
+    return this.players[this._currentPlayerIndex];
+  }
   public players: Player[] = [
     new Player('Alice'),
     new Player('Bob'),
     new Player('Charly'),
     new Player('Dilan')
   ]
-  public currentPlayer: Player
   private _currentPlayerIndex = 0;
   public readonly field: Field = new Field();
   private _history: GameState[] = [];
@@ -28,18 +30,17 @@ export class GameService {
   }
 
   step() {
-    this.currentPlayer = this.players[this._currentPlayerIndex];
+    const currentPlayer = this.currentPlayer;
+    if (!currentPlayer) { throw new Error('Player is null!');}
 
     const cell = this._randomService.fromArray(this.field.cells); // todo free cells!
-    const limb = this._randomService.fromArray(this.currentPlayer.limbs); // todo free limbs!
+    const limb = this._randomService.fromArray(currentPlayer.limbs); // todo free limbs!
 
-    if (!this.currentPlayer) { throw new Error('Player is null!');}
     if (!cell) { throw new Error('Cell is null!');}
     if (!limb) { throw new Error('Limb is null!');}
 
     cell.limb = limb;
     limb.cell = cell;
-
     this.nextPlayerIndex();
   }
 
@@ -47,13 +48,11 @@ export class GameService {
     const deleteIndex = this._currentPlayerIndex;
     this.players.splice(deleteIndex - 1, 1);
     this.nextPlayerIndex();
-    this.currentPlayer = this.players[this._currentPlayerIndex];
   }
   undo() {
     const gs = this._history.pop();
     this.players = gs.players;
     this._currentPlayerIndex = gs.currentPlayerIndex;
-    this.currentPlayer = this.players[this._currentPlayerIndex];
   }
 
   private nextPlayerIndex() {
@@ -61,9 +60,9 @@ export class GameService {
     gs.currentPlayerIndex = this._currentPlayerIndex;
     gs.players = this.players.slice();
     gs.field = this.field.cells.slice();
-    this._history.unshift(gs);
+    this._history.push(gs);
 
-    this._currentPlayerIndex = this._currentPlayerIndex >= this.players.length - 1 ? 0 : this._currentPlayerIndex + 1;
+    this._currentPlayerIndex = this._currentPlayerIndex + 1 >= this.players.length ? 0 : this._currentPlayerIndex + 1;
   }
 
 }

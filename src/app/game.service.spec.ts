@@ -56,18 +56,16 @@ describe('GameService', () => {
   it('should set current player to first player when step is called', () => {
     service.step();
     expect(service.currentPlayer).toBeDefined();
-    expect(service.currentPlayer.name).toEqual('Alice');
+    expect(service.currentPlayer.name).toEqual('Bob');
   });
   it('should set current player to second player when step is called twice', () => {
     service.step();
     service.step();
     expect(service.currentPlayer).toBeDefined();
-    expect(service.currentPlayer.name).toEqual('Bob');
+    expect(service.currentPlayer.name).toEqual('Charly');
   });
 
   it ('should set current player to first after last', () => {
-    service.step();
-    expect(service.currentPlayer.name).toEqual('Alice');
     service.step();
     expect(service.currentPlayer.name).toEqual('Bob');
     service.step();
@@ -75,7 +73,6 @@ describe('GameService', () => {
     service.step();
     expect(service.currentPlayer.name).toEqual('Dilan');
     service.step();
-    expect(service.currentPlayer).toBeDefined();
     expect(service.currentPlayer.name).toEqual('Alice');
   });
 
@@ -114,20 +111,28 @@ describe('GameService', () => {
 
   it('should restore previous state if undo method was called', () => {
     service.step();
+    expect(service.currentPlayer.name).toEqual('Bob');
     service.step();
+    expect(service.currentPlayer.name).toEqual('Charly');
     service.undo();
-    expect(service.currentPlayer.name).toEqual('Alice');
+    expect(service.currentPlayer.name).toEqual('Bob');
     // todo: test other fields
   });
 
   it('should restore second state after step * 5 and undo * 3 calls sequence', () => {
-    service.step(); // Alice
-    service.step(); // Bob
-    service.step(); // Charly
-    service.step(); // Dilan
-    service.undo(); // [UNDO] Charly
-    service.undo(); // [UNDO] Bob
+    service.step();
     expect(service.currentPlayer.name).toEqual('Bob');
+    service.step();
+    expect(service.currentPlayer.name).toEqual('Charly');
+    service.step();
+    expect(service.currentPlayer.name).toEqual('Dilan');
+    service.step();
+    expect(service.currentPlayer.name).toEqual('Alice');
+    service.undo();
+    expect(service.currentPlayer.name).toEqual('Dilan');
+    service.undo();
+    expect(service.currentPlayer.name).toEqual('Charly');
+
     // todo: test other fields
   });
 

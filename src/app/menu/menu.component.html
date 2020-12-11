@@ -7,10 +7,7 @@
       </li>
     </ul>
     <div class="tw-menu-names">
-      <input type="text" [value]="playerNames[0]" />
-      <input type="text" [value]="playerNames[1]" />
-      <input type="text" [value]="playerNames[2]" />
-      <input type="text" [value]="playerNames[3]" />
+      <input *ngFor="let player of gameService.players; let i = index;" type="text" [(ngModel)]="gameService.players[i].name"/>
     </div>
   </div>
 </div>

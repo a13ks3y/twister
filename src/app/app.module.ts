@@ -8,6 +8,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ControlsComponent } from './controls/controls.component';
 import { FieldComponent } from './field/field.component';
 import { PlayersComponent } from './players/players.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -17,11 +18,12 @@ import { PlayersComponent } from './players/players.component';
     FieldComponent,
     PlayersComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FontAwesomeModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FontAwesomeModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

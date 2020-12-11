@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import {GameService} from "../game.service";
 class MenuItem {
   private readonly _click: Function;
   public readonly title: string;
@@ -30,7 +31,7 @@ export class MenuComponent implements OnInit {
     "Charly",
     "Dilan"
   ];
-  constructor() {
+  constructor(public gameService: GameService) {
     this.items.push(new MenuItem('New Game', this.newGame.bind(this)));
     this.items.push(new MenuItem('Save', this.save.bind(this)));
     this.items.push(new MenuItem('Load', this.load.bind(this)));
