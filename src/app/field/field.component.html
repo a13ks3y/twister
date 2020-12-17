@@ -2,8 +2,8 @@
   <li *ngFor="let cell of gameService.field.cells" class="tw-field-item-{{cell.number}} tw-field-item-{{cell.color}}" [ngStyle]="{ backgroundColor: cell.color}">
     <div class="tw-field-item_number">{{cell.number}}</div>
     <div class="tw-field-item_limb" *ngIf="cell.limb">
-      <div>{{cell.limb.player.name}}</div>
-      <div>{{cell.limb.title}}</div>
+      <div>{{cell?.limb?.player?.name}}</div>
+      <div>{{cell?.limb?.title}}</div>
     </div>
   </li>
 </ul>

@@ -31,10 +31,14 @@ export class GameService {
 
   step() {
     const currentPlayer = this.currentPlayer;
-    if (!currentPlayer) { throw new Error('Player is null!');}
-
-    const cell = this._randomService.fromArray(this.field.cells); // todo free cells!
-    const limb = this._randomService.fromArray(currentPlayer.limbs); // todo free limbs!
+    if (!this.currentPlayer) { throw new Error('Player is null!');}
+    const freeCells = this.field.getFreeCells();
+    const freeLimbs = this.currentPlayer.getFreeLimbs();
+    // todo unit test that part with free limbs and cells!
+    const cell = this._randomService.fromArray(freeCells);
+    const limb = freeLimbs.length
+      ? this._randomService.fromArray(freeLimbs)
+      : this.currentPlayer.freeLimb(this._randomService.fromArray(this.currentPlayer.limbs));
 
     if (!cell) { throw new Error('Cell is null!');}
     if (!limb) { throw new Error('Limb is null!');}

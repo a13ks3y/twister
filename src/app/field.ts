@@ -26,4 +26,8 @@ export class Field {
             }
         }
     }
+
+  getFreeCells() {
+    return this.cells.filter(cell => !cell.limb);
+  }
 }

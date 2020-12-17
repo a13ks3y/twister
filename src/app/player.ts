@@ -34,4 +34,14 @@ export class Player {
           new Limb(this, LIMB_ORIENTATION.RIGHT, LIMB_TYPE.FOOT)
         ];
     }
+  // todo: unit test getFreeLimb method!
+  getFreeLimbs() {
+    return this.limbs.filter(limb => !limb.cell);
+  }
+  freeLimb(limb: Limb): Limb {
+      limb.cell.limb = null;
+      limb.cell = null;
+      limb.player = null;
+      return limb;
+  }
 }
