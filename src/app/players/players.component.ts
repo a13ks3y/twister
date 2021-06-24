@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {GameService} from "../game.service";
 import {Player} from "../player";
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+
+
 
 @Component({
   selector: 'tw-players',
@@ -9,9 +12,12 @@ import {Player} from "../player";
 })
 export class PlayersComponent implements OnInit {
   players: Player[] = [];
-
-  constructor(public gameService: GameService) {
+  isSmall: boolean = false;
+  constructor(public gameService: GameService, private bo: BreakpointObserver) {
     this.players = this.gameService.players;
+    this.bo.observe('(max-width: 700px)').subscribe((result) => {
+      this.isSmall = result.matches;
+    });
   }
 
   ngOnInit(): void {

@@ -3,11 +3,13 @@
     {{player.name}}
     <ul>
       <li *ngFor="let limb of player.limbs">
-        {{limb.title}}
+        <span *ngIf="!isSmall">{{limb.title}}</span> 
+        <span *ngIf="isSmall">{{limb.title[0]}}</span> 
         <span *ngIf="limb.cell">
           {{limb.cell.color}} {{limb.cell.number}}
         </span>
-        <span *ngIf="!limb.cell">is free</span>
+        <span *ngIf="!limb.cell && !isSmall">is free</span>
+        <span *ngIf="!limb.cell && isSmall">-</span>
       </li>
     </ul>
   </li>
